@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+         <loc>None./</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetest/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/test/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/test/"/>
+         
+    </url>
+    <url>
+         <loc>Nonedmail/background/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/dmail/background/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/dmail/background/"/>
+         
+    </url>
+    <url>
+         <loc>Nonedmail/roadmap/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/dmail/roadmap/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/dmail/roadmap/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/design/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/design/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/design/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/network/websocket/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/network/websocket/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/network/websocket/"/>
+         
+    </url>
+    <url>
+         <loc>Noneuser/feature/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/feature/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/user/feature/"/>
+         
+    </url>
+    <url>
+         <loc>Noneuser/deploy/server/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/deploy/server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/user/deploy/server/"/>
+         
+    </url>
+    <url>
+         <loc>Noneuser/help/web/</loc>
+         <lastmod>2023-05-19</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/help/web/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/user/help/web/"/>
+         
+    </url>
 </urlset>
