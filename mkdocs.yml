@@ -1,0 +1,50 @@
+site_name: dMail-docs
+
+repo_name: 'ARintaro/dMail-docs'
+repo_url: 'https://github.com/ARintaro/dMail-docs'
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  include_search_page: false
+  search_index_only: true
+  features:
+    - navigation.tabs
+
+nav:
+  - dMail: 
+    - Welcome: index.md
+    - 项目背景: dmail/background.md  
+    - 路线图: dmail/roadmap.md
+  - 技术文档:
+    - 技术设计: tech/design.md
+    - 通信协议: 
+      - Websocket: tech/network/websocket.md
+  - 用户文档:
+    - 使用帮助: 
+      - Web端: user/help/web.md
+    - 部署指南:
+      - 服务端: user/deploy/server.md
+    - 功能点列表: user/feature.md
+  - 开发文档: test.md
+
+plugins:
+  - search
+  - i18n:
+      default_language: zh
+      docs_structure: suffix
+      languages:
+        en:
+          name: English
+          build: true
+        zh:
+          name: 中文
+          build: true
