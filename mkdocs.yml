@@ -33,6 +33,7 @@ nav:
         - user: tech/database/user.md
         - chat: tech/database/chat.md
         - req: tech/database/req.md
+        - file: tech/database/file.md
   - 用户文档:
     - 使用帮助: 
       - Web端: user/help/web.md
