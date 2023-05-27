@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"dMail":[["impl StreamHandler&lt;<a class=\"enum\" href=\"https://doc.rust-lang.org/nightly/core/result/enum.Result.html\" title=\"enum core::result::Result\">Result</a>&lt;Message, ProtocolError&gt;&gt; for <a class=\"struct\" href=\"dMail/user/user_session/struct.WsUserSession.html\" title=\"struct dMail::user::user_session::WsUserSession\">WsUserSession</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

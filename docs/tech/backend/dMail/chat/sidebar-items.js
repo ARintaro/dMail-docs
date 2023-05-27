@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ChatMembers","ChatType"],"fn":["send_admin_message_to_group_chat"],"struct":["Chat","ChatInfo","ChatMessage","GroupChatData"]};

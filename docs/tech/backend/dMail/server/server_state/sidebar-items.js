@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"static":["email_sender","user_sessions","users_email_codes","workers_handle"],"struct":["ServerState"],"trait":["UserSessionGetter"],"type":["UserEmailCodeMap","UserSessionsPool","UserSymKeyMap"]};

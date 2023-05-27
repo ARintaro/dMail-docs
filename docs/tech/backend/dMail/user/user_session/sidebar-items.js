@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["UserSessionActorMessage","UserSessionActorResponse","UserSessionState","WsProtocolError"],"mod":["client_message_data","client_message_handler","protocol"],"struct":["UserSessionData","WsUserSession"],"trait":["UserSession"],"type":["UserSessionDataRc"]};

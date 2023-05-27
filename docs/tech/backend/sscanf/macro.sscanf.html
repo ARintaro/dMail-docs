@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A Macro to parse a string based on a format-string, similar to sscanf in C"><title>sscanf in sscanf - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="sscanf" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (ec2f40c6b 2023-03-30)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-9ade54abd4bd73c8.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><div class="sidebar-elems"><h2><a href="index.html">In sscanf</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Macro <a href="index.html">sscanf</a>::<wbr><a class="macro" href="#">sscanf</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>sscanf!() { /* proc-macro */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A Macro to parse a string based on a format-string, similar to sscanf in C</p>
+<h3 id="signature"><a href="#signature">Signature</a></h3>
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="macro">sscanf!</span>(input: <span class="kw">impl </span>Deref&lt;Target=str&gt;, format: &lt;literal&gt;, Type...) -&gt; <span class="prelude-ty">Result</span>&lt;(Type...), sscanf::Error&gt;</code></pre></div>
+<h3 id="parameters"><a href="#parameters">Parameters</a></h3>
+<ul>
+<li><code>input</code>: The string to parse. Can be anything that implements <a href="https://doc.rust-lang.org/nightly/core/ops/deref/trait.Deref.html" title="trait core::ops::deref::Deref"><code>Deref&lt;Target=str&gt;</code></a>
+(e.g. <code>&amp;str</code>, <code>String</code>, <code>Cow&lt;str&gt;</code>, etc. See examples below). Note that <code>sscanf</code> does not take
+ownership of the input.</li>
+<li><code>format</code>: A literal string. No const or static allowed, just like with <a href="https://doc.rust-lang.org/nightly/alloc/macro.format.html" title="macro alloc::format"><code>format!()</code></a>.</li>
+<li><code>Type...</code>: The types to parse. See <a href="index.html#custom-types">Custom Types</a> for more information.</li>
+</ul>
+<h3 id="return-value"><a href="#return-value">Return Value</a></h3>
+<p>A <a href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result"><code>Result</code></a> with a tuple of the parsed types or a <a href="enum.Error.html" title="enum sscanf::Error"><code>sscanf::Error</code></a>.
+Note that an error usually indicates that the input didn’t match the format string, making the
+returned <a href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result"><code>Result</code></a> functionally equivalent to an <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option"><code>Option</code></a>,
+and most applications should treat it that way. An error is only useful when debugging
+custom implementations of <a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html" title="trait core::str::traits::FromStr"><code>FromStr</code></a> or <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a>.
+See <a href="enum.Error.html" title="enum sscanf::Error"><code>sscanf::Error</code></a> for more information.</p>
+<h3 id="details"><a href="#details">Details</a></h3>
+<p>The format string <em>has</em> to be a string literal (with some form of <code>&quot;</code> on either side),
+because it is parsed by the procedural macro at compile time and checks if all the types
+and placeholders are matched. This is not possible from inside a variable or even a <code>const &amp;str</code> somewhere else.</p>
+<p>Placeholders within the format string are marked with <code>{}</code>. Any <code>'{'</code> or <code>'}'</code> that should not be
+treated as placeholders need to be escaped by writing <code>'{{'</code> or <code>'}}'</code>. For every placeholder there
+has to be a type name inside the <code>{}</code> or exactly one type in the parameters after the format
+string. Types can be referenced by indices in the placeholder, similar to <a href="https://doc.rust-lang.org/nightly/alloc/fmt/index.html" title="mod alloc::fmt"><code>format!()</code></a>.</p>
+<p>Any additional formatting options are placed behind a <code>:</code>. For a list of options, see
+the <a href="index.html#format-options">crate root documentation</a>.</p>
+<h3 id="examples"><a href="#examples">Examples</a></h3>
+<p>A few examples for possible inputs:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>input = <span class="string">&quot;5&quot;</span>; <span class="comment">// &amp;str
+</span><span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+
+<span class="kw">let </span>input = String::from(<span class="string">&quot;5&quot;</span>); <span class="comment">// String
+</span><span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+
+<span class="kw">let </span>input = <span class="kw-2">&amp;</span>input; <span class="comment">// &amp;String
+</span><span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+<span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input.as_str(), <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+
+<span class="kw">let </span>input = std::borrow::Cow::from(<span class="string">&quot;5&quot;</span>); <span class="comment">// Cow&lt;str&gt;
+</span><span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+
+<span class="kw">let </span>input = std::rc::Rc::from(<span class="string">&quot;5&quot;</span>); <span class="comment">// Rc&lt;str&gt;
+</span><span class="macro">assert_eq!</span>(<span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize}&quot;</span>).unwrap(), <span class="number">5</span>);
+
+<span class="comment">// and many more</span></code></pre></div>
+
+<div class="example-wrap compile_fail"><a href="#" class="tooltip" title="This example deliberately fails to compile">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="comment">// temporary value: doesn&#39;t work
+</span><span class="macro">sscanf!</span>(String::from(<span class="string">&quot;5&quot;</span>), <span class="string">&quot;{usize}&quot;</span>);</code></pre></div>
+<p>More Examples can be seen in the crate root documentation.</p>
+</div></details></section></div></main></body></html>

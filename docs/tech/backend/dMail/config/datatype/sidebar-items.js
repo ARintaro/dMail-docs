@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"type":["ChatID","ClientID","EmailCodeValue","MessageID","MessageIdInChat","NoticeID","SerializedChatInfo","SerializedChatMessage","SerializedFilePubUrl","SerializedGroupNotice","SerializedRequest","SerializedUserNotice","SymCipher","Timestamp","UploadId","UserID","UserReqId"]};

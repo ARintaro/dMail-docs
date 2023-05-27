@@ -33,6 +33,7 @@ nav:
     - Welcome: index.md
   - 技术文档:
     - 技术设计: tech/design.md
+    - 连接服务端代码文档: tech/backend/dMail/index.html
     - 通信协议: 
       - Websocket: tech/network/websocket.md
     - 数据库:

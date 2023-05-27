@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SMTP_PORT","SUBMISSIONS_PORT","SUBMISSION_PORT"],"mod":["authentication","client","commands","extension","response"],"struct":["AsyncSmtpTransport","AsyncSmtpTransportBuilder","Error","PoolConfig","SmtpTransport","SmtpTransportBuilder"]};

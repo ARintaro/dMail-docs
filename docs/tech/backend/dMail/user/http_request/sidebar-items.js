@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ApplyForEmail","apply_for_email_code"]};
