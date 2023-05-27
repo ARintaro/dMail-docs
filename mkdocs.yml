@@ -26,6 +26,12 @@ nav:
     - 技术设计: tech/design.md
     - 通信协议: 
       - Websocket: tech/network/websocket.md
+    - 数据库:
+      - redis:
+        - user: tech/database/user.md
+        - chat: tech/database/chat.md
+        - req: tech/database/req.md
+        - file: tech/database/file.md
   - 用户文档:
     - 使用帮助: 
       - Web端: user/help/web.md
