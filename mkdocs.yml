@@ -22,8 +22,6 @@ theme:
 nav:
   - dMail: 
     - Welcome: index.md
-    - 项目背景: dmail/background.md  
-    - 路线图: dmail/roadmap.md
   - 技术文档:
     - 技术设计: tech/design.md
     - 通信协议: 
