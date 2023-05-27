@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["actix","actix_web","actix_web_actors","aes_gcm","base64","bytes","chashmap","chrono","dMail","dotenv","env_logger","futures","generic_array","lettre","log","mobc","mobc_redis","num_cpus","once_cell","phf","pkcs1","rand","redis","regex","rsa","rustls","rustls_pemfile","s3","serde","serde_json","smartstring","sscanf","tokio","uuid"];

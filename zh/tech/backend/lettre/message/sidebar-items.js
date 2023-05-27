@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["MaybeString","MultiPartKind"],"mod":["header"],"struct":["Attachment","Body","Mailbox","Mailboxes","Message","MessageBuilder","MultiPart","MultiPartBuilder","SinglePart","SinglePartBuilder"],"trait":["IntoBody"]};

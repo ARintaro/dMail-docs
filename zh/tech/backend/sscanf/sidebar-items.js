@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"derive":["FromScanf"],"enum":["Error"],"macro":["sscanf","sscanf_get_regex","sscanf_unescaped"],"struct":["FromScanfFailedError","FromStrFailedError","FullF32","FullF64","HexNumber"],"trait":["FromScanf","RegexRepresentation"]};

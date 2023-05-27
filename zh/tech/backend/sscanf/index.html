@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A Rust crate with a sscanf (inverse of format!()) Macro based on Regex"><title>sscanf - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="sscanf" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (ec2f40c6b 2023-03-30)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-9ade54abd4bd73c8.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate sscanf</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.4.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#derives">Derive Macros</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">sscanf</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/sscanf/lib.rs.html#1-88">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A Rust crate with a sscanf (inverse of format!()) Macro based on Regex</p>
+<p><a href="https://github.com/mich101mich/sscanf/actions/workflows/test.yml"><img src="https://github.com/mich101mich/sscanf/actions/workflows/test.yml/badge.svg" alt="Tests" /></a></p>
+<p><code>sscanf</code> is originally a C-function that takes a string, a format string with placeholders and
+several variables (in the Rust version replaced with types). It then parses the input string,
+writing the values behind the placeholders into the variables (Rust: returns a tuple). <code>sscanf</code>
+can be thought of as reversing a call to <code>format!()</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// format: takes format string and values, returns String
+</span><span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;Hello {}{}!&quot;</span>, <span class="string">&quot;World&quot;</span>, <span class="number">5</span>);
+<span class="macro">assert_eq!</span>(msg, <span class="string">&quot;Hello World5!&quot;</span>);
+
+<span class="comment">// sscanf: takes string, format string and types, returns tuple
+</span><span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(msg, <span class="string">&quot;Hello {}{}!&quot;</span>, str, usize);
+
+<span class="comment">// parsed is Result&lt;(&amp;str, usize), ...&gt;
+</span><span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="string">&quot;World&quot;</span>, <span class="number">5</span>));
+
+<span class="comment">// alternative syntax:
+</span><span class="kw">let </span>parsed2 = <span class="macro">sscanf::sscanf!</span>(msg, <span class="string">&quot;Hello {str}{usize}!&quot;</span>);
+<span class="macro">assert_eq!</span>(parsed2.unwrap(), (<span class="string">&quot;World&quot;</span>, <span class="number">5</span>));</code></pre></div>
+<p><code>sscanf!()</code> takes a format string like <code>format!()</code>, but doesn’t write the values into the
+placeholders (<code>{}</code>), but extracts the values at those <code>{}</code> into the return tuple.</p>
+<p>If matching the format string failed, an Error is returned:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>msg = <span class="string">&quot;Text that doesn&#39;t match the format string&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(msg, <span class="string">&quot;Hello {str}{usize}!&quot;</span>);
+<span class="macro">assert!</span>(<span class="macro">matches!</span>(parsed, <span class="prelude-val">Err</span>(sscanf::Error::MatchFailed)));</code></pre></div>
+<p><strong>Types in Placeholders:</strong></p>
+<p>The types can either be given as a separate parameter after the format string, or directly
+inside of the <code>{}</code> placeholder.<br />
+The first allows for autocomplete while typing, syntax highlighting and better compiler errors
+generated by sscanf in case that the wrong types are given.<br />
+The second imitates the <a href="https://blog.rust-lang.org/2022/01/13/Rust-1.58.0.html#captured-identifiers-in-format-strings">Rust format!() behavior since 1.58</a>.
+This option gives worse compiler errors when using stable Rust,
+but is otherwise identical to the first option.</p>
+<p>More examples of the capabilities of <code>sscanf</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>sscanf::sscanf;
+<span class="kw">use </span>std::num::NonZeroUsize;
+
+<span class="kw">let </span>input = <span class="string">&quot;&lt;x=3, y=-6, z=6&gt;&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">&quot;&lt;x={i32}, y={i32}, z={i32}&gt;&quot;</span>);
+<span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="number">3</span>, -<span class="number">6</span>, <span class="number">6</span>));
+
+<span class="kw">let </span>input = <span class="string">&quot;Move to N36E21&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">&quot;Move to {char}{usize}{char}{usize}&quot;</span>);
+<span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="string">&#39;N&#39;</span>, <span class="number">36</span>, <span class="string">&#39;E&#39;</span>, <span class="number">21</span>));
+
+<span class="kw">let </span>input = <span class="string">&quot;Escape literal { } as {{ and }}&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">&quot;Escape literal {{ }} as {{{{ and }}}}&quot;</span>);
+<span class="macro">assert_eq!</span>(parsed.unwrap(), ());
+
+<span class="kw">let </span>input = <span class="string">&quot;Indexing types: N36E21&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">&quot;Indexing types: {1}{0}{1}{0}&quot;</span>, NonZeroUsize, char);
+<span class="comment">// output is in the order of the placeholders
+</span><span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="string">&#39;N&#39;</span>, NonZeroUsize::new(<span class="number">36</span>).unwrap(),
+                             <span class="string">&#39;E&#39;</span>, NonZeroUsize::new(<span class="number">21</span>).unwrap()));
+
+<span class="kw">let </span>input = <span class="string">&quot;A Sentence with Spaces. Another Sentence.&quot;</span>;
+<span class="comment">// str and String do the same, but String clones from the input string
+// to take ownership instead of borrowing.
+</span><span class="kw">let </span>(a, b) = <span class="macro">sscanf!</span>(input, <span class="string">&quot;{String}. {str}.&quot;</span>).unwrap();
+<span class="macro">assert_eq!</span>(a, <span class="string">&quot;A Sentence with Spaces&quot;</span>);
+<span class="macro">assert_eq!</span>(b, <span class="string">&quot;Another Sentence&quot;</span>);
+
+<span class="comment">// Number format options
+</span><span class="kw">let </span>input = <span class="string">&quot;ab01  127  101010  1Z&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">&quot;{usize:x}  {i32:o}  {u8:b}  {u32:r36}&quot;</span>);
+<span class="kw">let </span>(a, b, c, d) = parsed.unwrap();
+<span class="macro">assert_eq!</span>(a, <span class="number">0xab01</span>);     <span class="comment">// Hexadecimal
+</span><span class="macro">assert_eq!</span>(b, <span class="number">0o127</span>);      <span class="comment">// Octal
+</span><span class="macro">assert_eq!</span>(c, <span class="number">0b101010</span>);   <span class="comment">// Binary
+
+</span><span class="macro">assert_eq!</span>(d, <span class="number">71</span>);         <span class="comment">// any radix (r36 = Radix 36)
+</span><span class="macro">assert_eq!</span>(d, u32::from_str_radix(<span class="string">&quot;1Z&quot;</span>, <span class="number">36</span>).unwrap());
+
+<span class="kw">let </span>input = <span class="string">&quot;color: #D4AF37&quot;</span>;
+<span class="comment">// Number types take their size into account, and hexadecimal u8 can
+// have at most 2 digits =&gt; only possible match is 2 digits each.
+</span><span class="kw">let </span>(r, g, b) = <span class="macro">sscanf!</span>(input, <span class="string">&quot;color: #{u8:x}{u8:x}{u8:x}&quot;</span>).unwrap();
+<span class="macro">assert_eq!</span>((r, g, b), (<span class="number">0xD4</span>, <span class="number">0xAF</span>, <span class="number">0x37</span>));</code></pre></div>
+<p>The input in this case is a <code>&amp;'static str</code>, but it can be <code>String</code>, <code>&amp;str</code>, <code>&amp;String</code>, …
+Basically anything with <a href="https://doc.rust-lang.org/std/ops/trait.Deref.html"><code>Deref&lt;Target=str&gt;</code></a>.
+and without taking ownership. See <a href="https://docs.rs/sscanf/latest/sscanf/macro.sscanf.html#examples">here</a>
+for a few examples of possible inputs.</p>
+<p>The parsing part of this macro has very few limitations, since it replaces the <code>{}</code> with a
+Regular Expression (<a href="https://docs.rs/regex"><code>regex</code></a>) that corresponds to that type.
+For example:</p>
+<ul>
+<li><code>char</code> is just one character (regex <code>&quot;.&quot;</code>)</li>
+<li><code>str</code> is any sequence of characters (regex <code>&quot;.+?&quot;</code>)</li>
+<li>Numbers are any sequence of digits (regex <code>&quot;[-+]?\d+&quot;</code>)</li>
+</ul>
+<p>And so on. The actual implementation for numbers tries to take the size of the type into
+account and some other details, but that is the gist of the parsing.</p>
+<p>This means that any sequence of replacements is possible as long as the Regex finds a
+combination that works. In the <code>char, usize, char, usize</code> example above it manages to assign
+the <code>N</code> and <code>E</code> to the <code>char</code>s because they cannot be matched by the <code>usize</code>s.</p>
+<h2 id="format-options"><a href="#format-options">Format Options</a></h2>
+<p>All options are inside <code>'{'</code> <code>'}'</code> and after a <code>:</code>, so either as <code>{&lt;type&gt;:&lt;option&gt;}</code> or
+as <code>{:&lt;option&gt;}</code>. Note: The type might still have a path that contains <code>::</code>. Any double
+colons are ignored and only single colons are used to separate the options.</p>
+<p>Procedural macro don’t have any reliable type info and can only compare types by name. This means
+that the number options below only work with a literal type like “<code>i32</code>”, <strong>NO</strong> Paths (<del><code>std::i32</code></del>)
+or Wrappers (<del><code>struct Wrapper(i32);</code></del>) or Aliases (<del><code>type Alias = i32;</code></del>). <strong>ONLY</strong> <code>i32</code>,
+<code>usize</code>, <code>u16</code>, …</p>
+<div><table><thead><tr><th>config</th><th>description</th><th>possible types</th></tr></thead><tbody>
+<tr><td><code>{:/</code> <em>&lt;regex&gt;</em> <code>/}</code></td><td>custom regex</td><td>any</td></tr>
+<tr><td><code>{:x}</code></td><td>hexadecimal numbers</td><td>integers</td></tr>
+<tr><td><code>{:o}</code></td><td>octal numbers</td><td>integers</td></tr>
+<tr><td><code>{:b}</code></td><td>binary numbers</td><td>integers</td></tr>
+<tr><td><code>{:r2}</code> - <code>{:r36}</code></td><td>radix 2 - radix 36 numbers</td><td>integers</td></tr>
+<tr><td><code>#</code></td><td>“alternate” form</td><td>various types</td></tr>
+</tbody></table>
+</div>
+<p><strong>Custom Regex:</strong></p>
+<ul>
+<li><code>{:/.../}</code>: Match according to the <a href="https://docs.rs/regex"><code>Regex</code></a> between the <code>/</code> <code>/</code></li>
+</ul>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>input = <span class="string">&quot;random Text&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(input, <span class="string">&quot;{str:/[^m]+/}{str}&quot;</span>);
+
+<span class="comment">// regex  [^m]+  matches anything that isn&#39;t an &#39;m&#39;
+// =&gt; stops at the &#39;m&#39; in &#39;random&#39;
+</span><span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="string">&quot;rando&quot;</span>, <span class="string">&quot;m Text&quot;</span>));</code></pre></div>
+<p>The regex uses the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping"><code>same escaping logic as JavaScripts /.../ syntax</code></a>,
+meaning that the normal regex escaping with <code>\d</code> for digits etc. is in effect, with the addition
+that any <code>/</code> need to be escaped as <code>\/</code> since they are used to end the regex.</p>
+<p><strong>NOTE:</strong> You should use raw strings for a format string containing a regex, since otherwise you
+need to escape any <code>\</code> as <code>\\</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>sscanf::sscanf;
+<span class="kw">let </span>input = <span class="string">&quot;1234&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf!</span>(input, <span class="string">r&quot;{u8:/\d{2}/}{u8}&quot;</span>); <span class="comment">// regex  \d{2}  matches 2 digits
+</span><span class="kw">let _ </span>=      <span class="macro">sscanf!</span>(input, <span class="string">&quot;{u8:/\\d{2}/}{u8}&quot;</span>); <span class="comment">// the same with a non-raw string
+</span><span class="macro">assert_eq!</span>(parsed.unwrap(), (<span class="number">12</span>, <span class="number">34</span>));</code></pre></div>
+<p>Note: If you use any unescaped ( ) in your regex, you have to prevent them from forming a capture
+group by adding a <code>?:</code> at the beginning: <code>{:/..(..)../}</code> becomes <code>{:/..(?:..)../}</code>. This won’t
+change their functionality in any way, but is necessary for <code>sscanf</code>’s parsing process to work.</p>
+<p>This also means that custom regexes cannot be used on custom types that <a href="https://docs.rs/sscanf/latest/sscanf/derive.FromScanf.html"><code>derive FromScanf</code></a>
+since those rely on having an exact number of capture groups inside of their regex.</p>
+<p><strong>Radix Options:</strong></p>
+<p>Only work on primitive integer types (<code>u8</code>, …, <code>u128</code>, <code>i8</code>, …, <code>i128</code>, <code>usize</code>, <code>isize</code>).</p>
+<ul>
+<li><code>x</code>: hexadecimal Number (Digits 0-9 and a-f or A-F), optional prefix <code>0x</code> or <code>0X</code></li>
+<li><code>o</code>: octal Number (Digits 0-7), optional prefix <code>0o</code> or <code>0O</code></li>
+<li><code>b</code>: binary Number (Digits 0-1), optional prefix <code>0b</code> or <code>0B</code></li>
+<li><code>r2</code> - <code>r36</code>: any radix Number (Digits 0-9 and a-z or A-Z for higher radices)</li>
+</ul>
+<p><strong>Alternate form:</strong></p>
+<p>If used alongside a radix option: makes the number require a prefix (0x, 0o, 0b).</p>
+<p>A note on prefixes: <code>r2</code>, <code>r8</code> and <code>r16</code> match the same numbers as <code>b</code>, <code>o</code> and <code>x</code> respectively,
+but without a prefix. Thus:</p>
+<ul>
+<li><code>{:x}</code> <em>may</em> have a prefix, matching numbers like <code>0xab</code> or <code>ab</code></li>
+<li><code>{:r16}</code> has no prefix and would only match <code>ab</code></li>
+<li><code>{:#x}</code> <em>must</em> have a prefix, matching only <code>0xab</code></li>
+<li><code>{:#r16}</code> gives a compile error</li>
+</ul>
+<p>More uses for <code>#</code> may be added in the future. Let me know if you have a suggestion for this.</p>
+<h2 id="custom-types"><a href="#custom-types">Custom Types</a></h2>
+<p><code>sscanf</code> works with most primitive Types from <code>std</code> as well as <code>String</code> by default. The
+full list can be seen here: <a href="https://docs.rs/sscanf/latest/sscanf/trait.RegexRepresentation.html#foreign-impls">Implementations of <code>RegexRepresentation</code></a>.</p>
+<p>To add more types there are three options:</p>
+<ul>
+<li>Derive <a href="https://docs.rs/sscanf/latest/sscanf/trait.FromScanf.html"><code>FromScanf</code></a> for your type (recommended)</li>
+<li>Implement <strong>both</strong> <a href="https://docs.rs/sscanf/latest/sscanf/trait.RegexRepresentation.html"><code>RegexRepresentation</code></a> and <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>std::str::FromStr</code></a> for your type</li>
+<li>Implement <a href="https://docs.rs/sscanf/latest/sscanf/trait.RegexRepresentation.html"><code>RegexRepresentation</code></a> and manually implement <a href="https://docs.rs/sscanf/latest/sscanf/trait.FromScanf.html"><code>FromScanf</code></a> for your type (highly discouraged)</li>
+</ul>
+<p>The simplest option is to use <code>derive</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(sscanf::FromScanf)]
+#[sscanf(format = <span class="string">&quot;#{r:x}{g:x}{b:x}&quot;</span>)] </span><span class="comment">// matches &#39;#&#39; followed by 3 hexadecimal u8s
+</span><span class="kw">struct </span>Color {
+    r: u8,
+    g: u8,
+    b: u8,
+}
+
+<span class="kw">let </span>input = <span class="string">&quot;color: #ff00cc&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(input, <span class="string">&quot;color: {Color}&quot;</span>).unwrap();
+<span class="macro">assert!</span>(<span class="macro">matches!</span>(parsed, Color { r: <span class="number">0xff</span>, g: <span class="number">0x00</span>, b: <span class="number">0xcc </span>}));</code></pre></div>
+<p>Also works for enums:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(sscanf::FromScanf)]
+</span><span class="kw">enum </span>HasChanged {
+    <span class="attr">#[sscanf(format = <span class="string">&quot;received {added} additions and {deleted} deletions&quot;</span>)]
+    </span>Yes {
+        added: usize,
+        deleted: usize,
+    },
+    <span class="attr">#[sscanf(<span class="string">&quot;has not changed&quot;</span>)] </span><span class="comment">// the `format =` part can be omitted
+    </span>No
+}
+
+<span class="kw">let </span>input = <span class="string">&quot;Your file has not changed since your last visit!&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(input, <span class="string">&quot;Your file {HasChanged} since your last visit!&quot;</span>).unwrap();
+<span class="macro">assert!</span>(<span class="macro">matches!</span>(parsed, HasChanged::No));
+
+<span class="kw">let </span>input = <span class="string">&quot;Your file received 325 additions and 15 deletions since your last visit!&quot;</span>;
+<span class="kw">let </span>parsed = <span class="macro">sscanf::sscanf!</span>(input, <span class="string">&quot;Your file {HasChanged} since your last visit!&quot;</span>).unwrap();
+<span class="macro">assert!</span>(<span class="macro">matches!</span>(parsed, HasChanged::Yes { added: <span class="number">325</span>, deleted: <span class="number">15 </span>}));</code></pre></div>
+<p>More details can be found in the <a href="https://docs.rs/sscanf/latest/sscanf/trait.FromScanf.html"><code>FromScanf</code> documentation</a>
+and the <a href="https://docs.rs/sscanf/latest/sscanf/derive.FromScanf.html"><code>derive</code> documentation</a></p>
+<h2 id="license"><a href="#license">License</a></h2>
+<p>Licensed under either of <a href="LICENSE-APACHE">Apache License, Version 2.0</a> or
+<a href="LICENSE-MIT">MIT license</a> at your option.</p>
+<h2 id="a-note-on-compiler-errors"><a href="#a-note-on-compiler-errors">A Note on Compiler Errors</a></h2>
+<p>Errors in the format string would ideally point to the exact position in the string that
+caused the error. This is already the case if you compile/check with nightly, but not on
+stable, or at least until Rust Issue <a href="https://github.com/rust-lang/rust/issues/54725"><code>#54725</code></a>
+is far enough to allow for <a href="https://doc.rust-lang.org/proc_macro/struct.Literal.html#method.subspan"><code>this method</code></a>
+to be called from stable.</p>
+<p>Compiler Errors on nightly currently look like this:</p>
+
+<div class="example-wrap compile_fail"><a href="#" class="tooltip" title="This example deliberately fails to compile">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="macro">sscanf!</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot;Too many placeholders: {}{}{}&quot;</span>, usize);</code></pre></div>
+<div class="example-wrap"><pre class="language-text"><code>error: more placeholders than types provided
+  |
+4 | sscanf!(&quot;&quot;, &quot;Too many placeholders: {}{}{}&quot;, usize);
+  |                                       ^^
+</code></pre></div>
+<p>But on stable, you are limited to only pointing at the entire format string:</p>
+<div class="example-wrap"><pre class="language-text"><code>4 | sscanf!(&quot;&quot;, &quot;Too many placeholders: {}{}{}&quot;, usize);
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre></div>
+<p>The current workaround is to replicate that behavior in the error message
+itself:</p>
+<div class="example-wrap"><pre class="language-text"><code>error: more placeholders than types provided:
+       At &quot;Too many placeholders: {}{}{}&quot;
+                                    ^^
+  |
+4 | sscanf!(&quot;&quot;, &quot;Too many placeholders: {}{}{}&quot;, usize);
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre></div>
+<p>The alternative is to use <code>cargo +nightly check</code> to see the better errors
+whenever something goes wrong, or setting your Editor plugin to check with nightly.</p>
+<p>This does <em><strong>not</strong></em> influence the functionality in any way. This Crate works entirely on stable
+with no drawbacks in functionality or performance. The only difference is the compiler errors
+that you get while writing format strings.</p>
+</div></details><h2 id="macros" class="small-section-header"><a href="#macros">Macros</a></h2><ul class="item-table"><li><div class="item-name"><a class="macro" href="macro.sscanf.html" title="macro sscanf::sscanf">sscanf</a></div><div class="desc docblock-short">A Macro to parse a string based on a format-string, similar to sscanf in C</div></li><li><div class="item-name"><a class="macro" href="macro.sscanf_get_regex.html" title="macro sscanf::sscanf_get_regex">sscanf_get_regex</a></div><div class="desc docblock-short">Same as <a href="macro.sscanf.html" title="macro sscanf::sscanf"><code>sscanf</code></a>, but returns the regex without running it. Useful for debugging or efficiency.</div></li><li><div class="item-name"><a class="macro" href="macro.sscanf_unescaped.html" title="macro sscanf::sscanf_unescaped">sscanf_unescaped</a></div><div class="desc docblock-short">Same as <a href="macro.sscanf.html" title="macro sscanf::sscanf"><code>sscanf</code></a>, but allows use of Regex in the format String.</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.FromScanfFailedError.html" title="struct sscanf::FromScanfFailedError">FromScanfFailedError</a></div><div class="desc docblock-short">Error type for derived <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a> implementations</div></li><li><div class="item-name"><a class="struct" href="struct.FromStrFailedError.html" title="struct sscanf::FromStrFailedError">FromStrFailedError</a></div><div class="desc docblock-short">Error type for blanket implementations of <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a> on <a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html" title="trait core::str::traits::FromStr"><code>FromStr</code></a> types.</div></li><li><div class="item-name"><a class="struct" href="struct.FullF32.html" title="struct sscanf::FullF32">FullF32</a><span class="stab deprecated" title="">Deprecated</span></div><div class="desc docblock-short">An obsolete type, currently identical to f32</div></li><li><div class="item-name"><a class="struct" href="struct.FullF64.html" title="struct sscanf::FullF64">FullF64</a><span class="stab deprecated" title="">Deprecated</span></div><div class="desc docblock-short">An obsolete type, currently identical to f64</div></li><li><div class="item-name"><a class="struct" href="struct.HexNumber.html" title="struct sscanf::HexNumber">HexNumber</a><span class="stab deprecated" title="">Deprecated</span></div><div class="desc docblock-short">Matches a Hexadecimal Number with optional <code>0x</code> prefix. Deprecated in favor of format options</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.Error.html" title="enum sscanf::Error">Error</a></div><div class="desc docblock-short">The Error returned by <a href="macro.sscanf.html" title="macro sscanf::sscanf"><code>sscanf</code></a>.</div></li></ul><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2><ul class="item-table"><li><div class="item-name"><a class="trait" href="trait.FromScanf.html" title="trait sscanf::FromScanf">FromScanf</a></div><div class="desc docblock-short">A trait that allows you to use a custom regex for parsing a type.</div></li><li><div class="item-name"><a class="trait" href="trait.RegexRepresentation.html" title="trait sscanf::RegexRepresentation">RegexRepresentation</a></div><div class="desc docblock-short">A Trait used by <code>sscanf</code> to obtain the Regex of a Type</div></li></ul><h2 id="derives" class="small-section-header"><a href="#derives">Derive Macros</a></h2><ul class="item-table"><li><div class="item-name"><a class="derive" href="derive.FromScanf.html" title="derive sscanf::FromScanf">FromScanf</a></div><div class="desc docblock-short">A derive macro for <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a>.</div></li></ul></section></div></main></body></html>

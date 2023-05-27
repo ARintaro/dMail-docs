@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["UserNotice"],"fn":["send_delete_chat_msg","send_msg_to_online_handlers","send_msg_to_online_user_in_private_chat","send_msg_to_online_users_in_chat","send_notice","send_notice_to_user_in_chat","user_pull"],"mod":["http_request","user_request","user_session"],"struct":["Token","UserInfo"]};

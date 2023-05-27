@@ -9,14 +9,6 @@
          
     </url>
     <url>
-         <loc>Nonetest/</loc>
-         <lastmod>2023-05-27</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="Noneen/test/"/>
-         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/test/"/>
-         
-    </url>
-    <url>
          <loc>Nonetech/design/</loc>
          <lastmod>2023-05-27</lastmod>
          <changefreq>daily</changefreq>
@@ -25,19 +17,51 @@
          
     </url>
     <url>
+         <loc>Nonetech/backend/static.files/SourceSerif4-LICENSE-3bb119e13b1258b7/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/backend/static.files/SourceSerif4-LICENSE-3bb119e13b1258b7/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/backend/static.files/SourceSerif4-LICENSE-3bb119e13b1258b7/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/database/chat/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/database/chat/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/database/chat/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/database/file/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/database/file/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/database/file/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/database/req/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/database/req/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/database/req/"/>
+         
+    </url>
+    <url>
+         <loc>Nonetech/database/user/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/database/user/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/database/user/"/>
+         
+    </url>
+    <url>
          <loc>Nonetech/network/websocket/</loc>
          <lastmod>2023-05-27</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/tech/network/websocket/"/>
          <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/tech/network/websocket/"/>
-         
-    </url>
-    <url>
-         <loc>Noneuser/feature/</loc>
-         <lastmod>2023-05-27</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/feature/"/>
-         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/user/feature/"/>
          
     </url>
     <url>

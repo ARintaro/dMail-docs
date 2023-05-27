@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_pub_url","get_object_stat","get_presign_put_file_url","get_presign_put_image_url","get_public_url_and_auto_renew"],"static":["BUCKET"],"struct":["ObjectUploadRequest","PresignUrl"]};

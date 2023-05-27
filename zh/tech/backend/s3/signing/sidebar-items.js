@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["FRAGMENT","FRAGMENT_SLASH"],"fn":["authorization_header","authorization_query_params_no_sig","canonical_header_string","canonical_query_string","canonical_request","canonical_uri_string","flatten_queries","scope_string","signed_header_string","signing_key","string_to_sign","uri_encode"],"type":["HmacSha256"]};

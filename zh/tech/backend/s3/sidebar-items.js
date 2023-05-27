@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Region"],"mod":["bucket","bucket_ops","command","deserializer","error","request","serde_types","signing","utils"]};

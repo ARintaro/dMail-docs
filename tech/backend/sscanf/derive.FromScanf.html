@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A derive macro for `FromScanf`."><title>FromScanf in sscanf - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="sscanf" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (ec2f40c6b 2023-03-30)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-9ade54abd4bd73c8.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc derive"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../sscanf/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><div class="sidebar-elems"><h2><a href="index.html">In sscanf</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Derive Macro <a href="index.html">sscanf</a>::<wbr><a class="derive" href="#">FromScanf</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>#[derive(FromScanf)]
+{
+    // Attributes available to this derive:
+    #[sscanf]
+}
+</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A derive macro for <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a>.</p>
+<h3 id="for-structs"><a href="#for-structs">For structs</a></h3>
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(sscanf::FromScanf)]
+#[sscanf(format = <span class="string">&quot;&lt;format&gt;&quot;</span>)] </span><span class="comment">// format string. has to contain placeholders for all
+</span><span class="kw">struct </span>MyStruct {              <span class="comment">// non-default fields: {&lt;field&gt;}, {&lt;field_2&gt;}, {&lt;field_with_conversion&gt;}
+
+    </span>&lt;field&gt;: &lt;<span class="kw">type</span>&gt;, <span class="comment">// requires &lt;type&gt;: FromScanf (implemented for all primitive types
+                     // and several others from std)
+
+    </span>&lt;field_2&gt;: &lt;type_2&gt;, <span class="comment">// requires &lt;type_2&gt;: FromScanf
+
+    // ...
+
+    // possible attributes on fields:
+
+    </span><span class="attr">#[sscanf(default)]
+    </span>&lt;field_with_default&gt;: &lt;<span class="kw">type</span>&gt;, <span class="comment">// requires &lt;type&gt;: Default, but doesn&#39;t need FromScanf
+
+    </span><span class="attr">#[sscanf(default = &lt;expression&gt;)] </span><span class="comment">// accepts any expression that returns &lt;type&gt;
+    </span>&lt;field_with_custom_default&gt;: &lt;<span class="kw">type</span>&gt;, <span class="comment">// no traits required.
+
+    </span><span class="attr">#[sscanf(map = |input: &lt;matched_type&gt;| { &lt;conversion from &lt;matched_type&gt; to &lt;actual_type&gt;&gt; })]
+    </span>&lt;field_with_conversion&gt;: &lt;actual_type&gt;, <span class="comment">// requires &lt;matched_type&gt;: FromScanf
+</span>}
+
+<span class="comment">// tuple structs have the same capabilities, just without field names:
+</span><span class="attr">#[derive(sscanf::FromScanf)]
+#[sscanf(format = <span class="string">&quot;&lt;format&gt;&quot;</span>)] </span><span class="comment">// format string references fields by index: {0}, ...
+</span><span class="kw">struct </span>MyTupleStruct(&lt;<span class="kw">type</span>&gt;, <span class="attr">#[sscanf(default)] </span>&lt;<span class="kw">type</span>&gt;, ...);</code></pre></div>
+<p><strong>&lt;format&gt;</strong>: The format string to parse the struct from. Similar to the format string for
+<a href="macro.sscanf.html" title="macro sscanf::sscanf"><code>sscanf</code></a>, but with field names/indices instead of types for the placeholders. So, if you have
+a struct with fields <code>a</code>, <code>b</code> and <code>c</code>, the format string could be something like
+<code>&quot;{a} {b:/.*?/} {c}&quot;</code>. All fields that are not annotated with <code>default</code> must appear exactly
+once in the format string. Indices can be omitted if the fields are in the same order as the
+placeholders <code>{}</code> in the format string. So, the above example could also be written as
+<code>&quot;{} {:/.*?/} {}&quot;</code>.</p>
+<p>Any fields that don’t appear in the format string must be annotated with <code>default</code>. The field
+will then be initialized to either <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default"><code>Default::default()</code></a> or the evaluation of the expression
+given to the <code>default</code> attribute. The expression can be any code, including function calls or
+<code>{ &lt;code&gt; }</code> blocks, as long as they can be assigned to the field type. In the syntax overview
+above, the <code>&lt;format&gt;</code> must contain <code>&lt;field&gt;</code>, <code>&lt;field_2&gt;</code> and <code>&lt;field_with_conversion&gt;</code>
+exactly once and neither <code>&lt;field_with_default&gt;</code> nor <code>&lt;field_with_custom_default&gt;</code> must appear
+in the format string.</p>
+<p>Mapping allows matching against a different type than the field type. The <code>map</code> attribute takes
+a closure that takes the matched type as input and returns the field type. The type of the
+parameter of the closure has to be explicitly specified, since it is needed to generate the
+matching code.</p>
+<p>The types of the used fields of their matching types have to implement <a href="trait.FromScanf.html" title="trait sscanf::FromScanf"><code>FromScanf</code></a>
+and either <a href="trait.RegexRepresentation.html" title="trait sscanf::RegexRepresentation"><code>RegexRepresentation</code></a> or have a <code>{&lt;field&gt;:/&lt;regex&gt;/}</code>
+placeholder.</p>
+<h3 id="for-enums"><a href="#for-enums">For enums</a></h3>
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(sscanf::FromScanf)]
+</span><span class="kw">enum </span>MyEnum {
+    <span class="attr">#[sscanf(format = <span class="string">&quot;&lt;format&gt;&quot;</span>)] </span><span class="comment">// has to contain `{&lt;field&gt;}` and any other fields
+    </span>Variant1 {
+        &lt;field&gt;: &lt;<span class="kw">type</span>&gt;, <span class="comment">// requires &lt;type&gt;: FromScanf
+
+        </span><span class="attr">#[sscanf(default)]
+        </span>&lt;field_with_default&gt;: &lt;type2&gt;, <span class="comment">// requires &lt;type2&gt;: Default
+
+        // ... (same as for structs)
+    </span>},
+
+    <span class="attr">#[sscanf(<span class="string">&quot;&lt;format&gt;&quot;</span>)] </span><span class="comment">// the `format = ` part can be omitted
+    </span>Variant2(&lt;<span class="kw">type</span>&gt;, <span class="attr">#[sscanf(default)] </span>&lt;type2&gt;),
+
+    <span class="attr">#[sscanf(<span class="string">&quot;&lt;format&gt;&quot;</span>)] </span><span class="comment">// variant has no fields =&gt; no placeholders in format string
+    </span>Variant3,
+
+    Variant4, <span class="comment">// this variant won&#39;t be constructed by sscanf
+</span>}</code></pre></div>
+<p>An enum takes multiple format strings, one for each variant. The value returned from <code>sscanf</code>
+is constructed from the variant that matched the input. If multiple variants match, the first
+one in the enum definition is used. No variant matching means the entire enum won’t match.</p>
+<p>The requirements for a format string on a variant are identical to those for a struct: Each
+field of the variant, that is not annotated with <code>default</code>, must appear exactly once in the
+format string. This means that the format string for <code>Variant1</code> must contain <code>&lt;field&gt;</code>,
+the format string for <code>Variant2</code> must contain <code>{0}</code> or <code>{}</code> and the format string for
+<code>Variant3</code> has no placeholders.</p>
+<p>Any variants that don’t have a format string (like <code>Variant4</code> in the example above) won’t be
+constructed by <code>sscanf</code>.</p>
+<h3 id="a-note-on-generics"><a href="#a-note-on-generics">A note on Generics</a></h3>
+<p>Any lifetime parameters will be carried over. Any type <code>&amp;'a str</code> will contain a borrow of the
+input string, with an appropriate lifetime.</p>
+<p>As for type generics: <a href="trait.RegexRepresentation.html" title="trait sscanf::RegexRepresentation"><code>RegexRepresentation</code></a> cannot be implemented
+for generic types, since the contained associated <code>const</code> is only created once by Rust for all
+generic instances, meaning that different regexes for different <code>T</code> are not possible. This
+also means that deriving <code>FromScanf</code> for a struct that wants to match a generic field without
+a <code>map</code> or <code>default</code> attribute will generally fail. The only possibilities are:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(sscanf::FromScanf)]
+#[sscanf(format = <span class="string">&quot;...{field:/&lt;regex&gt;/}...&quot;</span>)]
+</span><span class="kw">struct </span>MyGenericStruct&lt;T&gt;
+<span class="kw">where
+    </span>T: std::str::FromStr + <span class="lifetime">&#39;static</span>,
+    &lt;T <span class="kw">as </span>std::str::FromStr&gt;::Err: std::error::Error + <span class="lifetime">&#39;static</span>,
+{
+    field: T,
+}
+
+<span class="kw">let </span>input = <span class="string">&quot;...&lt;regex&gt;...&quot;</span>;
+<span class="kw">let </span>res = <span class="macro">sscanf::sscanf!</span>(input, <span class="string">&quot;{MyGenericStruct&lt;String&gt;}&quot;</span>).unwrap();
+<span class="macro">assert_eq!</span>(res.field, String::from(<span class="string">&quot;&lt;regex&gt;&quot;</span>));</code></pre></div>
+<p>There are two important things in this example:</p>
+<ol>
+<li>Since <code>RegexRepresentation</code> cannot be used, every occurrence of generic fields in the format
+string have to have a regex (`{:/…/}) attached to them.</li>
+<li>The type bounds on <code>T</code> have to contain all of those exact bounds.</li>
+</ol>
+<p>Any <code>T</code> has to be constructed by <a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html" title="trait core::str::traits::FromStr"><code>FromStr</code></a> from what is matched by the
+specified regex, making this setup virtually useless for all but a few selected types. Since
+the generic parameter has to be specified in the actual <code>sscanf</code> call, it is usually better
+to just use a concrete type in the struct itself.</p>
+<p>It is possible to have <code>T</code> directly require <code>FromScanf</code> like this: <code>T: for&lt;'a&gt; FromScanf&lt;'a&gt;</code>.
+However, since <code>FromScanf</code> implementations usually rely on capture groups inside of their regex,
+this would require also having the exact same capture groups in the format string, which is
+currently not possible. Implementations that don’t rely on capture groups are usually those
+that were blanket-implemented based on their <code>FromStr</code> implementation.</p>
+</div></details></section></div></main></body></html>

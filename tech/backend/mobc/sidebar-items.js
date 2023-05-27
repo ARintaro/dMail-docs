@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"attr":["async_trait"],"enum":["Error"],"fn":["spawn"],"mod":["runtime"],"struct":["Builder","Connection","Pool","State"],"trait":["Manager"]};
