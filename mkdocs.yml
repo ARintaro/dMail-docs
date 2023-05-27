@@ -14,6 +14,15 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   include_search_page: false
   search_index_only: true
   features:
@@ -37,8 +46,6 @@ nav:
       - Web端: user/help/web.md
     - 部署指南:
       - 服务端: user/deploy/server.md
-    - 功能点列表: user/feature.md
-  - 开发文档: test.md
 
 plugins:
   - search
@@ -52,3 +59,14 @@ plugins:
         zh:
           name: 中文
           build: true
+      nav_translations:
+        en:
+          技术文档: Tech
+          技术设计: Tech Design
+          通信协议: Protocol
+          数据库: Database
+          用户文档: User
+          使用帮助: Manual
+          Web端: Web
+          部署指南: Deploy
+          服务端: Server
