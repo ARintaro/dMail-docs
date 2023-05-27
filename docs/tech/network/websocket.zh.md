@@ -450,3 +450,1094 @@
 }
 ```
 
+### GetUserInfoResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送用户信息数据
+
+#### 参数
+
+| 参数名称   | 类型         | 说明                         |
+| ---------- | ------------ | ---------------------------- |
+| data       | JSON         | 无                           |
+| state      | string       | 响应状态                     |
+| userId     | number(可选) | 成功响应后，为用户Id         |
+| userName   | string(可选) | 成功响应后，为用户名         |
+| avaterHash | string(可选) | 成功响应后，为头像文件hash值 |
+
+| state状态    | 说明         |
+| ------------ | ------------ |
+| Success      | 正确响应请求 |
+| UserNotFound | 该用户不存在 |
+| ServerError  | 服务器错误   |
+
+#### 示例
+
+```json
+{
+    "command": "GetUserInfoResponse",
+    "data": {
+		"state": "Success",
+        "userId": 8,
+        "userName": "Rintaro",
+        "avaterHash": "b9c9a45da34b134a835c0ec673ea4ce4"
+    }
+}
+```
+
+## 聊天数据拉取协议
+
+### GetChatInfo(C2S)
+
+#### 描述
+
+客户端向服务器端申请聊天信息数据
+
+#### 参数
+
+| 参数名称 | 类型   | 说明   |
+| -------- | ------ | ------ |
+| data     | number | 聊天ID |
+
+#### 示例
+
+```json
+{
+    "command": "GetChatInfo",
+    "data": 9
+}
+```
+
+### Chat(S2C)
+
+#### 描述
+
+服务器端向客户端发送聊天信息数据
+
+#### 参数
+
+| 参数名称 | 类型   | 说明                   |
+| -------- | ------ | ---------------------- |
+| data     | string | 序列化后的聊天信息数据 |
+
+#### 示例
+
+```json
+{
+    "command": "Chat",
+    "data": "{\"id\":9,\"name\":\"创建群聊测试2\",\"avaterHash\":\"\"}"
+}
+```
+
+## 群聊权限相关协议
+
+### GetGroupUsers、GetGroupAdmin、GetGroupOwner(C2S)
+
+#### 描述
+
+客户端向服务器端请求群聊用户ID列表、请求管理员ID列表、请求群主ID
+
+#### 参数
+
+| 参数名称 | 类型   | 说明   |
+| -------- | ------ | ------ |
+| data     | number | 聊天ID |
+
+#### 示例
+
+```json
+{
+    "command": "GetGroupUsers",
+    "data": 9
+}
+```
+
+```json
+{
+    "command": "GetGroupAdmin",
+    "data": 9
+}
+```
+
+```json
+{
+    "command": "GetGroupOwner",
+    "data": 9
+}
+```
+
+### GetGroupUsersResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送群聊成员ID列表
+
+#### 参数
+
+| 参数名称       | 类型         | 说明           |
+| -------------- | ------------ | -------------- |
+| data           | JSON         | 无             |
+| state          | string       | 响应状态       |
+| chatId         | number(可选) | 聊天ID         |
+| userIds        | Array(可选)  | 群聊用户ID列表 |
+| userIds[index] | number       | 用户ID         |
+
+| state状态    | 说明           |
+| ------------ | -------------- |
+| Success      | 成功响应       |
+| NotGroupChat | 该聊天不是群聊 |
+| ServerError  | 服务器异常     |
+
+#### 示例	
+
+```json
+{
+    "command": "GetGroupUsersResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 8,
+        "userIds": [
+            1,
+            5
+        ]
+    }
+}
+```
+
+```json
+{
+    "command": "GetGroupUsersResponse",
+    "data": {
+        "state": "NotGroupChat"
+    }
+}
+```
+
+### GetGroupOwnerResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送群主ID
+
+#### 参数
+
+| 参数名称 | 类型         | 说明                 |
+| -------- | ------------ | -------------------- |
+| data     | JSON         | 无                   |
+| chatId   | number(可选) | 成功响应后，为聊天ID |
+| userId   | number(可选) | 成功响应后，为群主ID |
+
+| state状态     | 说明                     |
+| ------------- | ------------------------ |
+| Success       | 成功响应                 |
+| UserNotInChat | 发出请求的用户不在聊天中 |
+| ServerError   | 服务器错误               |
+
+#### 示例
+
+```json
+{
+    "command": "GetGroupOwnerResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 8,
+        "userId": 10
+    }
+}
+```
+
+```json
+{
+    "command": "GetGroupOwnerResponse",
+    "data": {
+        "state": "UserNotInChat"
+    }
+}
+```
+
+### GetGroupAdminResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送管理员ID列表
+
+#### 参数
+
+| 参数名称       | 类型         | 说明                       |
+| -------------- | ------------ | -------------------------- |
+| data           | JSON         | 无                         |
+| chatId         | number(可选) | 成功响应后，为聊天ID       |
+| userIds        | Array(可选)  | 成功响应后，为管理员ID列表 |
+| userIds[index] | number       | 管理员ID                   |
+
+| state状态     | 说明                     |
+| ------------- | ------------------------ |
+| Success       | 成功响应                 |
+| UserNotInChat | 发出请求的用户不在聊天中 |
+| ServerError   | 服务器错误               |
+
+#### 示例
+
+```json
+{
+    "command": "GetGroupAdminResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 8,
+        "userIds": [
+            10,
+            5
+        ]
+    }
+}
+```
+
+```json
+{
+    "command": "GetGroupAdminResponse",
+    "data": {
+        "state": "UserNotInChat"
+    }
+}
+```
+
+### GroupOwnerTransfer(C2S)
+
+#### 描述
+
+转移群主身份
+
+#### 参数
+
+| 参数名称 | 类型   | 说明           |
+| -------- | ------ | -------------- |
+| data     | JSON   | 无             |
+| chatId   | number | 聊天ID         |
+| userId   | number | 要移交的用户ID |
+
+#### 示例
+
+```json
+{
+    "command": "GroupOwnerTransfer",
+    "data": {
+        "chatId": 5,
+        "userId": 2
+    }
+}
+```
+
+### GroupOwnerTransferResponse(S2C)
+
+#### 描述
+
+服务器端向客户端响应移交群主请求
+
+#### 参数
+
+| 参数名称 | 类型   | 说明     |
+| -------- | ------ | -------- |
+| data     | JSON   | 无       |
+| state    | string | 响应状态 |
+| chatId   | number | 聊天ID   |
+| userId   | number | 用户ID   |
+
+| state状态     | 说明             |
+| ------------- | ---------------- |
+| Success       | 成功响应         |
+| NotOwner      | 发出请求的用户ID |
+| UserNotInChat | 用户不在群聊中   |
+| ServerError   | 服务器错误       |
+
+#### 示例
+
+```json
+{
+    "command": "GroupOwnerTransferResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 4,
+        "userId": 2
+    }
+}
+```
+
+### RemoveGroupMember(C2S)
+
+#### 描述
+
+踢出群成员
+
+#### 参数
+
+| 参数名称 | 类型   | 说明   |
+| -------- | ------ | ------ |
+| chatId   | number | 聊天ID |
+| userId   | number | 用户ID |
+
+#### 示例
+
+```json
+{
+    "command": "RemoveGroupMember",
+    "data": {
+		"chatId": 5,
+        "userId": 2
+    }
+}
+```
+
+### RemoveGroupMemberResponse(S2C)
+
+#### 描述
+
+服务器端向客户端响应踢出群成员请求
+
+#### 参数
+
+| 参数名称 | 类型         | 说明                         |
+| -------- | ------------ | ---------------------------- |
+| data     | JSON         | 无                           |
+| state    | string       | 响应状态                     |
+| chatId   | number(可选) | 成功响应后，为聊天ID         |
+| userId   | number(可选) | 成功响应后，为被踢出的用户ID |
+
+| state状态     | 说明                       |
+| ------------- | -------------------------- |
+| Success       | 成功响应                   |
+| SameUser      | 发出请求用户与踢出用户相同 |
+| NoPermission  | 无权限踢出该成员           |
+| UserNotInChat | 用户不在群聊中             |
+| ServerError   | 服务器错误                 |
+
+#### 示例
+
+```json
+{
+    "command": "RemoveGroupMemberResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 5,
+        "userId": 15
+    }
+}
+```
+
+## 私聊已读查询协议
+
+### GetUserReadInPrivate(C2S)
+
+#### 描述
+
+客户端向服务器端请求私聊对方已读到的最新消息ID
+
+#### 参数
+
+| 参数名称 | 类型   | 说明   |
+| -------- | ------ | ------ |
+| data     | number | 聊天ID |
+
+#### 示例iLike
+
+```json
+{
+    "command": "GetUserReadInPrivate",
+    "data": 72
+}
+```
+
+### GetUserReadInPrivateResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送私聊对方最新的已读消息ID
+
+#### 参数
+
+| 参数名称 | 类型         | 说明               |
+| -------- | ------------ | ------------------ |
+| data     | JSON         | 无                 |
+| state    | string       | 响应状态           |
+| chatId   | number(可选) | 成功响应后，聊天ID |
+| inChatId | number(可选) | 成功响应后，消息ID |
+
+| state状态      | 说明                       |
+| -------------- | -------------------------- |
+| Success        | 成功响应                   |
+| NotPrivateChat | 该聊天不是私聊             |
+| UserNotInChat  | 发出请求的用户不在该群聊中 |
+| ServerError    | 服务器错误                 |
+
+#### 示例
+
+```json
+{
+    "command": "GetUserReadInPrivateResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 72,
+        "inChatId": 5
+    }
+}
+```
+
+```json
+{
+    "command": "GetUserReadInPrivateResponse",
+    "data": {
+        "state": "NotPrivateChat"
+    }
+}
+```
+
+## 群聊已读查询协议
+
+### GetUserReadInGroup(C2S)
+
+#### 描述
+
+客户端向服务器端请求已读该消息的群成员ID列表
+
+#### 参数
+
+| 参数名称 | 类型   | 说明   |
+| -------- | ------ | ------ |
+| data     | JSON   | 无     |
+| chatId   | number | 群聊ID |
+| inChatId | number | 消息ID |
+
+#### 示例
+
+```json
+{
+    "command": "GetUserReadInGroup",
+    "data": {
+		"chatId": 4,
+        "inChatId": 49
+    }
+}
+```
+
+### GetUserReadInGroupResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送对应消息的已读成员ID列表
+
+#### 参数
+
+| 参数名称       | 类型         | 说明                       |
+| -------------- | ------------ | -------------------------- |
+| data           | JSON         | 无                         |
+| state          | string       | 响应状态                   |
+| chatId         | number(可选) | 成功响应后，聊天ID         |
+| inChatId       | number(可选) | 成功响应后，消息ID         |
+| userIds        | Array(可选)  | 成功响应后，已读成员ID列表 |
+| userIds[index] | number       | 用户ID                     |
+
+| state状态     | 说明                     |
+| ------------- | ------------------------ |
+| Success       | 成功响应                 |
+| NotGroupChat  | 该群聊不是群聊           |
+| UserNotInChat | 发出请求的用户不在群聊中 |
+
+#### 示例
+
+```json
+{
+    "command": "GetUserReadInGroupResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 4,
+        "inChatId": 15,
+        "userIds": [
+            10,
+            2
+        ]
+    }
+}
+```
+
+```json
+{
+    "command": "GetUserReadInGroupResponse",
+    "data": {
+        "state": "UserNotInChat"
+    }
+}
+```
+
+## 群聊公告协议
+
+### PullGroupNotice(C2S)
+
+#### 描述
+
+客户端向服务器端增量拉取群聊公告数据
+
+#### 参数
+
+| 参数名称     | 类型   | 说明                                    |
+| ------------ | ------ | --------------------------------------- |
+| data         | JSON   | 无                                      |
+| chatId       | number | 聊天ID                                  |
+| lastNoticeId | number | 客户端已有的最新公告ID，若为0则全量拉取 |
+
+#### 示例
+
+```json
+{
+    "command": "PullGroupNotice",
+    "data": {
+		"chatId": 4,
+        "lastNoticeId": 0
+    }
+}
+```
+
+### PullGroupNoticeResponse(S2C)
+
+#### 描述
+
+服务器端向客户端发送序列化后的群公告数据列表
+
+#### 参数
+
+| 参数名称           | 类型        | 说明                         |
+| ------------------ | ----------- | ---------------------------- |
+| data               | JSON        | 无                           |
+| state              | string      | 响应状态                     |
+| chatId             | number      | 聊天ID                       |
+| groupNotice        | Array(可选) | 成功响应后，为群公告数据列表 |
+| groupNotice[index] | string      | 序列化后的群公告数据         |
+
+| state状态     | 说明                       |
+| ------------- | -------------------------- |
+| Success       | 成功响应                   |
+| UserNotInChat | 发出请求的用户不在该群聊中 |
+| ServerError   | 服务器错误                 |
+
+#### 示例
+
+```json
+{
+    "command": "PullGroupNoticeResponse",
+    "data": {
+		"state": "Success",
+        "chatId": 4,
+        "groupNotice": []
+    }
+}
+```
+
+### SendGroupNotice(C2S)
+
+#### 描述
+
+发送群公告
+
+#### 参数
+
+| 参数名称 | 类型   | 说明         |
+| -------- | ------ | ------------ |
+| data     | JSON   | 无           |
+| chatId   | number | 聊天ID       |
+| clientId | number | 客户端消息ID |
+| notice   | string | 公告内容     |
+
+#### 示例
+
+```json
+{
+    "command": "SendGroupNotice",
+    "data": {
+        "chatId": 4,
+        "clientId": 1,
+        "notice": "test"
+    }
+}
+```
+
+### GroupNoticeResponse(S2C)
+
+#### 描述
+
+服务器端响应客户端的发送群公告请求
+
+#### 参数
+
+| 参数名称  | 类型   | 说明         |
+| --------- | ------ | ------------ |
+| data      | JSON   | 无           |
+| state     | string | 响应状态     |
+| chatId    | number | 聊天ID       |
+| clientId  | number | 客户端聊天ID |
+| noticeId  | number | 公告ID       |
+| timestamp | number | 公告时间戳   |
+
+| state状态          | 说明           |
+| ------------------ | -------------- |
+| Success            | 成功响应       |
+| NoPermission       | 无权发送群公告 |
+| LenthLimitExceeded | 群公告长度过长 |
+| ServerError        | 服务器错误     |
+
+#### 示例
+
+```json
+{
+    "command": "GroupNoticeResponse",
+    "data": {
+		"state": "Success",
+        "chatId": 4,
+        "clientId": 1,
+        "noticeId": 1,
+        "timestamp": 16851863077
+    }
+}
+```
+
+## token签发协议
+
+### ApplyForToken(C2S)
+
+#### 描述
+
+客户端向服务器端请求签发token
+
+#### 参数
+
+| 参数列表 | 类型       | 说明 |
+| -------- | ---------- | ---- |
+| data     | undefinend | 无   |
+
+#### 示例
+
+```json
+{
+	"command": "ApplyForToken"
+}
+```
+
+### ApplyForTokenResponse(S2C)
+
+#### 描述
+
+服务器端向客户端签发token
+
+#### 参数
+
+| 参数名称  | 类型         | 说明     |
+| --------- | ------------ | -------- |
+| data      | JSON         | 无       |
+| state     | string       | 响应状态 |
+| token     | string(可选) | token    |
+| timestamp | number(可选) | 时间戳   |
+
+| state状态   | 说明       |
+| ----------- | ---------- |
+| Success     | 成功响应   |
+| ServerError | 服务器错误 |
+
+#### 示例
+
+```json
+{
+    "command": "ApplyForTokenResponse",
+    "data": {
+        "state": "ServerError"
+    }
+}
+```
+
+```json
+{
+    "command": "ApplyForTokenResponse",
+    "data": {
+        "state": "Success",
+        "token": "b309358883384c45b321340a127cacd6",
+        "timestamp": 1685192367997
+    }
+}
+```
+
+## 消息发送及操作协议
+
+### SendMessage(C2S)
+
+#### 描述
+
+发送消息
+
+#### 参数
+
+| 参数名称          | 类型   | 说明               |
+| ----------------- | ------ | ------------------ |
+| data              | JSON   | 无                 |
+| type              | string | 消息类型           |
+| clientId          | number | 客户端消息ID       |
+| serializedContent | string | 序列化后的消息主体 |
+| timestamp         | number | 时间戳             |
+
+| type类型    | 说明     |
+| ----------- | -------- |
+| Text        | 文本消息 |
+| File        | 文件消息 |
+| Image       | 图片消息 |
+| Voice       | 语音消息 |
+| Transfer    | 转发消息 |
+| Revoked     | 撤回消息 |
+| MentionText | 提及消息 |
+| ReplyText   | 回复消息 |
+
+#### 示例
+
+```json
+{
+    "command": "SendMessage",
+    "data": {
+		"chatId": 4,
+        "clientId": 1,
+        "serializedContent": "\"你好\"",
+        "timestamp": 1685192622888,
+        "type": "Text"
+    }
+}
+```
+
+### SendMessageResponse(S2C)
+
+#### 描述
+
+服务器端响应客户端发送消息请求
+
+#### 参数
+
+| 参数名称  | 类型   | 说明         |
+| --------- | ------ | ------------ |
+| data      | JSON   | 无           |
+| state     | string | 响应状态     |
+| clientId  | number | 客户端消息ID |
+| chatId    | number | 聊天ID       |
+| inChatId  | number | 消息ID       |
+| timestamp | number | 时间戳       |
+
+| state状态          | 说明           |
+| ------------------ | -------------- |
+| Success            | 成功响应       |
+| LenthLimitExceeded | 发送消息过长   |
+| UserNotInChat      | 用户不在聊天中 |
+| UserNotLoggedIn    | 用户尚未登录   |
+| ServerError        | 服务器错误     |
+
+#### 示例
+
+```json
+{
+    "command": "SendMessageResponse",
+    "data": {
+		"state": "Success",
+        "clientId": 1,
+        "chatId": 4,
+        "inChatId": 52,
+        "timestamp": 1685192616
+    }
+}
+```
+
+```json
+{
+    "command": "SendMessageResponse",
+    "data": {
+		"state": "UserNotInChat"
+    }
+}
+```
+
+### RevokeMessage(C2S)
+
+#### 描述
+
+撤回消息
+
+#### 参数
+
+| 参数名称 | 类型   | 说明     |
+| -------- | ------ | -------- |
+| data     | JSON   | 无       |
+| chatId   | number | 聊天ID   |
+| inChatId | number | 消息ID   |
+| method   | string | 撤回权限 |
+
+| method类型 | 说明                     |
+| ---------- | ------------------------ |
+| Sender     | 发送者撤回自己发送的消息 |
+| GroupAdmin | 群聊管理员撤回消息       |
+| GroupOwner | 群主撤回消息             |
+
+#### 示例
+
+```json
+{
+    "command": "RevokeMessage",
+    "data": {
+		"chatId": 4,
+        "inChatId": 52,
+        "method": "Sender"
+    }
+}
+```
+
+### RevokeMessageResponse(S2C)
+
+#### 描述
+
+服务器端响应撤回请求
+
+#### 参数
+
+| 参数名称 | 类型   | 说明     |
+| -------- | ------ | -------- |
+| data     | JSON   | 无       |
+| state    | string | 响应状态 |
+| chatId   | number | 聊天ID   |
+| inChatId | number | 消息ID   |
+
+| state状态         | 说明           |
+| ----------------- | -------------- |
+| Success           | 成功响应       |
+| TimeLimitExceeded | 超时无法撤回   |
+| PermissionsDenied | 无权撤回该消息 |
+| MessageNotExisted | 消息不存在     |
+
+#### 示例
+
+```json
+{
+    "command": "RevokeMessageResponse",
+    "data": {
+		"state": "Success",
+        "chatId": 4,
+        "inChatId": 50
+    }
+}
+```
+
+## 请求发送及处理协议
+
+### SendRequest(C2S)
+
+#### 描述
+
+发送诸如添加好友，申请入群的请求
+
+#### 参数
+
+| 参数名称           | 类型         | 说明             |
+| ------------------ | ------------ | ---------------- |
+| data               | JSON         | 无               |
+| clientId           | number       | 客户端消息ID     |
+| content            | JSON         | 请求体           |
+| content.type       | string       | 请求类型         |
+| content.receiverId | number(可选) | 请求接收者ID     |
+| content.chatId     | number(可选) | 接收请求的群聊ID |
+| message            | string       | 请求验证消息     |
+
+| content.type类型 | 说明         |
+| ---------------- | ------------ |
+| MakeFriend       | 添加好友     |
+| JoinGroup        | 申请入群     |
+| GroupInvitation  | 邀请入群     |
+| InvitedJoinGroup | 邀请入群审核 |
+
+#### 示例
+
+```json
+{
+    "command": "SendRequest",
+    "data": {
+        "messgae": "加个好友",
+        "clientId": 1,
+        "content": {
+			"type": "MakeFriend",
+            "receiverId": 15
+        }
+    }
+}
+```
+
+### SendRequestResponse(S2C)
+
+#### 描述
+
+服务器端响应发送请求的请求
+
+#### 参数
+
+| 参数名称 | 类型         | 说明                 |
+| -------- | ------------ | -------------------- |
+| data     | JSON         | 无                   |
+| state    | string       | 响应状态             |
+| clientId | number       | 客户端消息ID         |
+| reqId    | number(可选) | 成功响应后，为请求ID |
+
+| state状态   | 说明       |
+| ----------- | ---------- |
+| Success     | 成功响应   |
+| ServerError | 服务器错误 |
+
+#### 示例
+
+```json
+{
+    "command": "SendRequestResponse",
+    "data": {
+        "state": "Success",
+        "clientId": 1,
+        "reqId": 15
+    }
+}
+```
+
+### SolveRequest(C2S)
+
+#### 描述
+
+处理请求
+
+#### 参数
+
+| 参数名称 | 类型   | 说明     |
+| -------- | ------ | -------- |
+| data     | JSON   | 无       |
+| reqId    | number | 请求ID   |
+| answer   | string | 处理操作 |
+
+| answer类型 | 说明     |
+| ---------- | -------- |
+| Refused    | 拒绝请求 |
+| Approved   | 同样请求 |
+
+#### 示例
+
+```json
+{
+    "command": "SolveRequest",
+    "data": {
+		"reqId": 15,
+        "answer": "Refused"
+    }
+}
+```
+
+### SolveRequestResponse(S2C)
+
+#### 描述
+
+服务器端响应用户处理请求
+
+#### 参数
+
+| 参数名称 | 类型   | 说明     |
+| -------- | ------ | -------- |
+| data     | JSON   | 无       |
+| state    | string | 响应状态 |
+| reqId    | number | 请求ID   |
+
+| state状态 | 说明             |
+| --------- | ---------------- |
+| Success   | 成功响应         |
+| Nohandler | 该用户无处理权限 |
+
+#### 示例
+
+```json
+{
+    "command": "SolveRequestResponse",
+    "data": {
+        "state": "Success",
+        "reqId": 10
+    }
+}
+```
+
+### RequestStateUpdate(S2C)
+
+#### 描述
+
+服务器端向客户端发送请求状态更改指令
+
+#### 参数
+
+| 参数名称 | 类型   | 说明         |
+| -------- | ------ | ------------ |
+| data     | JSON   | 无           |
+| state    | string | 将更新的状态 |
+| reqId    | number | 请求ID       |
+
+#### 示例
+
+```json
+{
+    "command": "RequestStateUpdate",
+    "data": {
+		"state": "Solved",
+        "reqId": 10
+    }
+}
+```
+
+## 删除好友协议
+
+### Unfriend(C2S)
+
+#### 描述
+
+删除好友
+
+#### 参数
+
+| 参数名称 | 类型   | 说明         |
+| -------- | ------ | ------------ |
+| data     | number | 删除的好友ID |
+
+#### 示例
+
+```json
+{
+    "command": "Unfriend",
+    "data": 15
+}
+```
+
+### UnfriendResponse(S2C)
+
+#### 描述
+
+服务器端响应客户端删除好友请求
+
+#### 参数
+
+| 参数名称 | 类型         | 说明                 |
+| -------- | ------------ | -------------------- |
+| state    | string       | 响应状态             |
+| chatId   | number(可选) | 成功响应后，为聊天ID |
+
+| state状态 | 说明             |
+| --------- | ---------------- |
+| Success   | 成功响应         |
+| NotFriend | 二者目前不是好友 |
+
+#### 示例
+
+```json
+{
+    "command": "UnfriendResponse",
+    "data": {
+        "state": "Success",
+        "chatId": 5
+    }
+}
+```
+
