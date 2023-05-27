@@ -185,3 +185,19 @@ redis-cli
 set chat:1:1 2
 ```
 
+### Invitations
+
+#### 数据类型
+
+哈希表
+
+#### 描述
+
+在用户被邀请收到进群邀请时增添“邀请人:被邀请者:群聊id”的键，邀请处理后删除
+
+#### 示例
+
+```bash
+redis-cli
+hset Invitations 2:3:3 1
+```
