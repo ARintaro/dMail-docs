@@ -33,7 +33,8 @@ nav:
     - Welcome: index.md
   - 技术文档:
     - 技术设计: tech/design.md
-    - 连接服务端代码文档: tech/backend/dMail/index.html
+    - 连接服务端:
+      - Cargo Doc: tech/backend/dMail/index.html 
     - 通信协议: 
       - Websocket: tech/network/websocket.md
     - 数据库:
@@ -71,3 +72,4 @@ plugins:
           Web端: Web
           部署指南: Deploy
           服务端: Server
+          连接服务端: Session Server
