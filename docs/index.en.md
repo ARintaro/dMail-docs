@@ -39,3 +39,7 @@ The project repository will be open-sourced on GitHub after the course ends.
 [@lizengyu21](https://github.com/lizengyu21) The strategic elite builder of toilets, a practitioner who excels in both leading and following the roll. In his short life, there are only two things: "software engineering" and "girlfriend."
 
 [@zhangzhenhe](https://github.com/zzh2021010869) He made a friendly guest appearance in our short video, as well as in the promotional video for Pizza Hut's "Supreme Wagyu Pizza."
+
+[@yanjx2021](https://github.com/yanjx2021) CSS高手、jQuery的忠实用户、05年纯情男高篮球弟弟。
+
+[@Claire](https://github.com/ClaireZ-7) What kind of experience is it to learn English and draw diagrams in a software engineering class? Well, let me tell you, it's like trying to debug a program written in a foreign language while juggling paintbrushes! You'll be mastering the art of code and sketching like a multitasking ninja. So, get ready to decode the mysteries of programming and bring them to life on paper, all with a touch of artistic flair. It's a wild ride, but hey, who said software engineering couldn't be a colorful adventure?

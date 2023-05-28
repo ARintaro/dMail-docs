@@ -41,6 +41,10 @@ dMail 是一个开源的即时通讯系统，旨在提供一个**高效**、**�
 
 [@zhangzhenhe](https://github.com/zzh2021010869) 友情出演了我们的短视频，和必胜客「和牛至尊披萨」的推广视频。
 
+[@yanjx2021](https://github.com/yanjx2021) CSS高手、jQuery的忠实用户、05年纯情男高篮球弟弟。
+
+[@Claire](https://github.com/ClaireZ-7) 在软件工程课上学习英语和画图是一种什么样的体验？
+
 
 
 
