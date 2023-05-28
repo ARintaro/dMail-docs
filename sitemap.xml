@@ -65,11 +65,11 @@
          
     </url>
     <url>
-         <loc>Noneuser/deploy/server/</loc>
+         <loc>Noneuser/deploy/server.zh/</loc>
          <lastmod>2023-05-28</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/deploy/server/"/>
-         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/user/deploy/server/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/deploy/server.zh/"/>
+         
          
     </url>
     <url>

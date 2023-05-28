@@ -148,14 +148,14 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="../../../../tech/database/file/" hreflang="zh" class="md-select__link">
-                    中文
+                  <a href="../../../../tech/database/file/" hreflang="en" class="md-select__link">
+                    English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
-                    English
+                  <a href="../../../../zh/tech/database/file/" hreflang="zh" class="md-select__link">
+                    中文
                   </a>
                 </li>
               
@@ -660,22 +660,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    数据类型
+  <a href="#data-type" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    描述
+  <a href="#description" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    示例
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -694,22 +694,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    数据类型
+  <a href="#data-type_1" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    描述
+  <a href="#description_1" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    示例
+  <a href="#example_1" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -728,22 +728,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    数据类型
+  <a href="#data-type_2" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    描述
+  <a href="#description_2" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    示例
+  <a href="#example_2" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -892,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../user/deploy/server/" class="md-nav__link">
+      <a href="../../../../user/deploy/server.md" class="md-nav__link">
         Server
       </a>
     </li>
@@ -946,22 +946,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    数据类型
+  <a href="#data-type" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    描述
+  <a href="#description" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    示例
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -980,22 +980,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    数据类型
+  <a href="#data-type_1" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    描述
+  <a href="#description_1" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    示例
+  <a href="#example_1" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -1014,22 +1014,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    数据类型
+  <a href="#data-type_2" class="md-nav__link">
+    Data Type
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    描述
+  <a href="#description_2" class="md-nav__link">
+    Description
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    示例
+  <a href="#example_2" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -1060,29 +1060,29 @@
   <h1>file</h1>
 
 <h3 id="lst_upd">lst_upd</h3>
-<h4 id="_1">数据类型</h4>
-<p>键值</p>
-<h4 id="_2">描述</h4>
-<p>维护最后一个文件上传请求ID，用于产生新的文件上传请求时分配id</p>
-<h4 id="_3">示例</h4>
+<h4 id="data-type">Data Type</h4>
+<p>Key-Value</p>
+<h4 id="description">Description</h4>
+<p>Maintains the last file upload request ID to generate new IDs for file upload requests.</p>
+<h4 id="example">Example</h4>
 <pre><code class="language-bash">redis-cli
 set file:lst_upd 10
 </code></pre>
 <h3 id="upload">upload</h3>
-<h4 id="_4">数据类型</h4>
-<p>哈希表</p>
-<h4 id="_5">描述</h4>
-<p>维护上传请求ID到请求状态的JSON，当上传请求成功/失败后，字段会被删除</p>
-<h4 id="_6">示例</h4>
+<h4 id="data-type_1">Data Type</h4>
+<p>Hash Table</p>
+<h4 id="description_1">Description</h4>
+<p>Maintains the mapping of upload request IDs to request status JSON. The fields are deleted after a successful or failed upload request.</p>
+<h4 id="example_1">Example</h4>
 <pre><code class="language-bash">redis-cli
 hset file:upload 1 json
 </code></pre>
 <h3 id="url">url</h3>
-<h4 id="_7">数据类型</h4>
-<p>哈希表</p>
-<h4 id="_8">描述</h4>
-<p>维护上传请求的文件哈希到URL和URL过期时间的映射</p>
-<h4 id="_9">示例</h4>
+<h4 id="data-type_2">Data Type</h4>
+<p>Hash Table</p>
+<h4 id="description_2">Description</h4>
+<p>Maintains the mapping of file hashes in upload requests to the URL and expiration time.</p>
+<h4 id="example_2">Example</h4>
 <pre><code class="language-bash">redis-cli
 hset file:url hash url&amp;&amp;expire
 </code></pre>

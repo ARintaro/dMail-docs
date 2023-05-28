@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-dmail-doc" class="md-skip">
+        <a href="#welcome" class="md-skip">
           Skip to content
         </a>
       
@@ -146,14 +146,14 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="../" hreflang="zh" class="md-select__link">
-                    中文
+                  <a href="../" hreflang="en" class="md-select__link">
+                    English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
-                    English
+                  <a href="../zh/" hreflang="zh" class="md-select__link">
+                    中文
                   </a>
                 </li>
               
@@ -395,15 +395,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    Commands
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    Project layout
+  <a href="#project-repository" class="md-nav__link">
+    Project Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintainers" class="md-nav__link">
+    Maintainers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    Acknowledgments
   </a>
   
 </li>
@@ -802,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user/deploy/server/" class="md-nav__link">
+      <a href="../user/deploy/server.md" class="md-nav__link">
         Server
       </a>
     </li>
@@ -850,15 +864,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    Commands
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    Project layout
+  <a href="#project-repository" class="md-nav__link">
+    Project Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintainers" class="md-nav__link">
+    Maintainers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    Acknowledgments
   </a>
   
 </li>
@@ -881,22 +909,27 @@
   
 
 
-<h1 id="welcome-to-dmail-doc">Welcome to dMail-doc</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<p>你好你好</p>
-<pre><code>    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-</code></pre>
+<h1 id="welcome">Welcome</h1>
+<h2 id="introduction">Introduction</h2>
+<p>dMail is an open-source instant messaging system designed to provide an <strong>efficient</strong>, <strong>secure</strong>, and <strong>user-friendly</strong> self-hosted IM deployment solution.</p>
+<p>We aim to enable individuals or small organizations to deploy an instant messaging system at a relatively low cost, capable of serving a considerable number of users while ensuring an adequate level of security. This helps to avoid potential information leaks and external scrutiny associated with public IM services.</p>
+<p>The project currently utilizes the <code>Rust</code> programming language for the server-side implementation, and it integrates with open-source projects such as <code>Minio</code>, <code>Coturn</code>, and <code>Pika</code> to form a complete backend service. Additionally, a cross-platform compatible web interface has been developed using the <code>Postman Template</code> and communicates with the backend service through <code>Websockets</code>.</p>
+<p>This project is part of the Software Engineering course at Tsinghua University in the spring semester of 2023.</p>
+<h2 id="project-repository">Project Repository</h2>
+<p>The project repository will be open-sourced on GitHub after the course ends.</p>
+<h2 id="maintainers">Maintainers</h2>
+<p><a href="https://github.com/ARintaro">@r1ntaro</a> Responsible for the main framework of the client and server, as well as the implementation of specific features.</p>
+<p><a href="https://github.com/lizengyu21">@lizengyu21</a> Responsible for implementing functionality on the web interface.</p>
+<p><a href="https://github.com/Francis-Rockwell">@francis</a> Responsible for implementing functionality related to server connections.</p>
+<p><a href="https://github.com/yanjx2021">@yanjx2021</a> Responsible for improving the visual appearance of the web interface and CSS coding.</p>
+<p><a href="https://github.com/ClaireZ-7">@Claire</a> Responsible for documentation and localization of the documents.</p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p><a href="https://github.com/ljsthu">@LJSthu</a> Our beloved TA of the software engineering group! He's super nice, but he won't be serving as the TA for software engineering next year, so you won't get the chance to have him. Hahaha!</p>
+<p><a href="https://github.com/zhangzuo21">@zhangzuo21</a> &amp; <a href="https://github.com/ZengGuanning">@ZengGuanning</a> At first, they joined forces with us to form a mighty six-person squad. But alas, software engineering only allows teams of five, so they had no choice but to split into two squads. Poor Zuo Yuan and Guan Ning's team fell victim of internal competition in PRJ2, and as a result, they had to withdraw from the course. But fear not, for they shall rise again in the grand stage of software engineering in the autumn semester of 2023! It seems they are determined to unleash a splendid revenge upon the realm of software engineering! Brace yourselves for an epic comeback!</p>
+<p><a href="https://github.com/Francis-Rockwell">@francis</a> He made a daring leap from the Department of Electronics to the Department of Computer Science without even getting demoted, and to top it off, he's also pursuing a minor in Finance. Believe it or not, he has taken more finance courses and computer courses than his peers pursuing a double degree in Computer Science and Finance. He is the true superhero of Computer Science and Finance! (And to add to his glory, he starred in our hilarious short videos.)</p>
+<p><a href="https://github.com/ARintaro">@r1ntaro</a> You're right, but how did a lousy game developer like me end up rolling in software engineering? And guess what, I even managed to score a solid "B+"!</p>
+<p><a href="https://github.com/lizengyu21">@lizengyu21</a> The strategic elite builder of toilets, a practitioner who excels in both leading and following the roll. In his short life, there are only two things: "software engineering" and "girlfriend."</p>
+<p><a href="https://github.com/zzh2021010869">@zhangzhenhe</a> He made a friendly guest appearance in our short video, as well as in the promotional video for Pizza Hut's "Supreme Wagyu Pizza."</p>
 
 
 
